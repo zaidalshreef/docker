@@ -1,9 +1,11 @@
-
+import  os
 from sqlalchemy import Column, String, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_path = os.environ['DATABASE_URL']
+from sqlalchemy.sql.sqltypes import Integer
+
+database_path = "postgres://czcscrmrqgsjlq:97541aeee45dfb774f702e3d7390d0f0d0cd840c85434a03e36b3e58e65d396d@ec2-44-199-26-122.compute-1.amazonaws.com:5432/des28lpuevnlo3"
 
 db = SQLAlchemy()
 
