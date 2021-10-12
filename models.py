@@ -7,7 +7,7 @@ import json
 
 db = SQLAlchemy()
 
-DATABASE_URI = os.getenv('DATABASE_URI')
+DATABASE_URI = os.getenv('HEROKU_POSTGRESQL_CRIMSON_URL')
 
 def setup_db(app, database_path=DATABASE_URI):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
