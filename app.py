@@ -36,7 +36,7 @@ def create_app(test_config=None):
 
 ##--------------------------------------------------------------------------------##
 
-        # MOVIES #
+                                    # MOVIES #
 
 ##--------------------------------------------------------------------------------##
 
@@ -80,9 +80,9 @@ def create_app(test_config=None):
             # get the movies ordered by id
             movies = Movie.query.order_by(Movie.id).all()
             # total number of movies in the database after insert the new movie
-            total_movies = len(movie)
+            total_movies = len(movies)
             # paginate the movies
-            current_movies = pagination_Movie(request, movie)
+            current_movies = pagination_Movie(request, movies)
             return jsonify({
                 "success": True,
                 "created": movie.title,
@@ -95,25 +95,67 @@ def create_app(test_config=None):
             
             
             
+     #edit the movie by id 
+    @app.route('/movies/<int:id>', methods=['PATCH'])
+    @requires_auth('Edit:movies')
+    def Edit_movies(payload, id):
+      
+        try:
+            data = request.get_json()
+            if data is None:
+                abort(400)
+                
+            movie = Movie.query.get(id)
             
-   # get movies by actor id
-    @app.route('/actors/<int:Id>/movies')
-    @requires_auth('view:movies')
-    def View_Movies_by_actor_id(payload, Id):
+            if movie is None:
+                abort(404)
+                
+            if 'title' in data:
+                movie.title = data.get('title')
+            if 'release_date' in data:
+                movie.release_date = data.get('release_date')
+            if 'genre' in data:
+                movie.genre = data.get('genre')
+                
+            movie.update()
+            
+            return jsonify({
+                "success": True,
+                "movie": movie.format()
+            })
+        except :
+             abort(402)
 
-        actor = Actor.query.get(Id)
-        movies = Movie.query.filter_by(id=actor.id)
-        if len(movies) == 0 or actor is None:
-            abort(404)
-        total_movies = len(movies)
-        current_movies = pagination_Movie(request, movies)
-
-        return jsonify({"success": True,
-                        "actor": actor.format(),
-                        "movies": current_movies,
-                        "total_movies": total_movies
-                        })
-
+        
+        
+        
+        
+    @app.route('/movies/<int:id>', methods=['DELETE'])
+    @requires_auth('delete:movies')
+    def delete_movie(payload, id):
+        try:
+            movie = Movie.query.get(id)
+            
+            if movie is None:
+                abort(404)
+                
+            movie.delete()
+            
+            return jsonify({
+                "success": True,
+                "deleted": movie.title
+            })
+        except :
+          abort(402)
+        
+        
+        
+        
+        
+        
+        
+        
+          
     return app
 
 
