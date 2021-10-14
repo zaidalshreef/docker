@@ -7,17 +7,17 @@ from flask_cors import CORS
 from auth import requires_auth, AuthError
 
 
-Movie_Per_Page = 10
+movies_or_actors_Per_Page = 10
 
 
-def pagination_Movie(request, selection):
+def pagination_movie_or_actor(request, selection):
     page = request.args.get('page', 1, type=int)
-    start = (page - 1) * Movie_Per_Page
-    end = start + Movie_Per_Page
+    start = (page - 1) * movies_or_actors_Per_Page
+    end = start + movies_or_actors_Per_Page
 
-    movies = [Movie.format() for Movie in selection]
-    current_movies = movies[start:end]
-    return current_movies
+    movies_or_actors = [movie_or_actor.format() for movie_or_actor in selection]
+    current_movies_or_actors = movies_or_actors[start:end]
+    return current_movies_or_actors
 
 
 def create_app(test_config=None):
@@ -43,13 +43,14 @@ def create_app(test_config=None):
    # get movies from database
     @app.route('/movies')
     @requires_auth('view:movies')
-    def View_Movies(payload):
+    def view_Movies(payload):
 
         movies = Movie.query.all()
-        if len(movies) == 0:
+        if movies is None:
             abort(404)
+            
         total_movies = len(movies)
-        current_movies = pagination_Movie(request, movies)
+        current_movies = pagination_movie_or_actor(request, movies)
 
         return jsonify({"success": True,
                         "movies": current_movies,
@@ -61,13 +62,13 @@ def create_app(test_config=None):
  # create a new movie 
     @app.route('/movies', methods=['POST'])
     @requires_auth('add:movies')
-    def Create_Movies(payload):
+    def create_Movies(payload):
 
         data = request.get_json()
 
         # abort if the request body is invalid
         if not ('title' in data and 'release_date' in data and 'genre' in data):
-            abort(422)
+            abort(400)
 
         try:
             movie = Movie(
@@ -82,7 +83,7 @@ def create_app(test_config=None):
             # total number of movies in the database after insert the new movie
             total_movies = len(movies)
             # paginate the movies
-            current_movies = pagination_Movie(request, movies)
+            current_movies = pagination_movie_or_actor(request, movies)
             return jsonify({
                 "success": True,
                 "created": movie.title,
@@ -98,7 +99,7 @@ def create_app(test_config=None):
      #edit the movie by id 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('Edit:movies')
-    def Edit_movies(payload, id):
+    def edit_movies(payload, id):
       
         try:
             data = request.get_json()
@@ -124,7 +125,7 @@ def create_app(test_config=None):
                 "movie": movie.format()
             })
         except :
-             abort(402)
+             abort(422)
 
         
         
@@ -150,16 +151,112 @@ def create_app(test_config=None):
         
         
         
+ ##--------------------------------------------------------------------------------##
+
+                                    # Actors #
+
+##--------------------------------------------------------------------------------##
+
         
         
+    @app.route('/actors')
+    @requires_auth('view:actors')
+    def view_actors(payload):
         
         
+            actors = Actor.query.all()
+            
+            if actors is None:
+                abort(404)
+                
+            total_actors = len(actors)
+            current_actors = pagination_movie_or_actor(request, actors)
+                
+            return jsonify({
+                "success": True,
+                "actors": current_actors,
+                "total_actors": total_actors,
+            })
         
-          
+        
+    @app.route('/actors', methods=['POST'])
+    @requires_auth('add:actors')
+    def create_actor(payload):
+        try:
+            data = request.get_json()
+            
+            if 'name' not in data or 'age' not in data or 'gender' not in data:
+                abort(400)
+                
+            actor = Actor(name=data.get("name"),
+                          age=data.get("age"),
+                          gender=data.get("gender")
+                          )
+            
+            actor.insert()
+            
+            # get the actors ordered by id
+            actors = Actor.query.order_by(Actor.id).all()
+            # total number of actors in the database after insert the new actor
+            total_actors = len(actors)
+            # paginate the actors
+            current_actors = pagination_movie_or_actor(request,actors)
+            return jsonify({
+                "success": True,
+                "created": actor.name,
+                "actors": current_actors,
+                "total_actors": total_actors,
+            })
+        except :
+            abort(422)
+            
+            
+    
+    @app.route('/actors/<int:id>', methods=['PATCH'])
+    @requires_auth('edit:actors')
+    def modify_actor(payload, id):
+        
+        try:
+            
+            data = request.get_json()
+            
+            if data is None:
+                abort(400)
+                
+            actor = Actor.query.get(id)
+            
+            if actor is None:
+                abort(404)
+                
+            if 'name' in data:
+                actor.name = data.get("name")
+                
+            if 'age' in data:
+                actor.age = data.get("age")
+                
+            if 'gender' in data:
+                actor.gender = data.get("gender")
+                
+            actor.update()
+            
+            return jsonify({
+                "success": True,
+                "actor": actor.format()
+            })
+        except :
+            abort(422)     
+            
+            
+            
+            
+            
+            
+            
+            
     return app
 
 
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(port=8080, debug=True)

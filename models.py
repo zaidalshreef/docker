@@ -55,7 +55,7 @@ class Actor(db.Model):
             "name": self.name,
             "age": self.age,
             "gender": self.gender
-        }
+            }
 
     def __repr__(self):
         return f'Actor: {self.id}, {self.name}'
@@ -86,7 +86,7 @@ class Movie(db.Model):
             "title": self.title,
             "release_date": self.release_date.isoformat(),
             "genre": self.genre
-        }
+            }
 
     def __repr__(self):
         return f'Movie:{self.id}, {self.title}'
