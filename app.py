@@ -86,7 +86,7 @@ def create_app(test_config=None):
             current_movies = pagination_movie_or_actor(request, movies)
             return jsonify({
                 "success": True,
-                "created": movie.title,
+                "created": movie.id,
                 "movies": current_movies,
                 "total_movies": total_movies,
             })
@@ -214,7 +214,7 @@ def create_app(test_config=None):
     
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('edit:actors')
-    def modify_actor(payload, id):
+    def edit_actor(payload, id):
         
         try:
             
@@ -246,13 +246,81 @@ def create_app(test_config=None):
         except :
             abort(422)     
             
+       
+    @app.route('/actors/<int:id>', methods=['DELETE'])
+    @requires_auth('delete:actors')
+    def delete_actor(payload,id):
+        
+        
+        try:
+            
+            actor = Actor.query.get(id)
+            
+            if actor is None:
+                abort(404)
+                
+            actor.delete()
+            
+            return jsonify({
+                "success": True,
+                "deleted": actor.id
+                })
+        except:
+            abort(422)   
+            
+    
+           
+ ##--------------------------------------------------------------------------------##
+
+                                    # ERROR HANDLER #
+
+##--------------------------------------------------------------------------------##
+
+        
+    
+    
+    
+# handle 404 error in the application
+    @app.errorhandler(404)
+    def not_found(error):
+     return jsonify({
+      "success": False,
+      'error': 404,
+      "message" : "The server can not find the requested resource"
+      }
+    ),404
+  
+  #handle 422 error in the application 
+    @app.errorhandler(422)
+    def unprocessable_entity(error):
+     return jsonify({
+      "success": False,
+      "error": 422,
+      "message": "The request was well-formed but was unable to be followed due to semantic errors."
+    }),422
+     
+     
+ # handle 400 error in the application 
+    @app.errorhandler(400)
+    def bad_request(error):
+     return jsonify({
+      "success": False,
+      "error": 400,
+      "message": "The server could not understand the request due to invalid syntax."
+    }),400        
+            
+    @app.errorhandler(AuthError)
+    def auth_error(error):
+        print(error)
+        return jsonify({
+            "success": False,
+            "error": error.status_code,
+            "message": error.error
+        }), error.status_code
+       
             
             
-            
-            
-            
-            
-            
+           
     return app
 
 
