@@ -144,10 +144,10 @@ def create_app(test_config=None):
             
             return jsonify({
                 "success": True,
-                "deleted": movie.title
+                "deleted": movie.id
             })
         except :
-          abort(402)
+          abort(422)
         
         
         

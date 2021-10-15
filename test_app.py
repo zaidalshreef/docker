@@ -4,6 +4,7 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 from models import setup_db, Movie, Actor, create_and_drop_all
 from app import create_app
+import datetime
 
 TEST_DATABASE_URI = os.getenv('TEST_DATABASE_URI')
 ASSISTANT_TOKEN = os.getenv('ASSISTANT_TOKEN')
@@ -55,7 +56,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     
     
     
-    def test_movies(self):
+    def test_view_movies(self):
         
         res = self.client().get('/movies', headers=self.auth_assistant)
         data = json.loads(res.data)
@@ -64,10 +65,153 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['movies'])
         
-    def test_401_unauthorized_access_movies(self):
+    def test_401_unauthorized_access_to_view_movies(self):
         res = self.client().get('/movies')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'],False)
         self.assertEqual(data['code'], 'authorization_header_missing')
+    
+    
+    def test_create_movie(self):
+        
+        movies = Movie.query.all()
+        
+        res = self.client().post('/movies', json=self.new_movie, headers=self.auth_producer)
+        data = json.loads(res.data)
+        
+        movies_after_create = Movie.query.all()
+        new_movie_id = data['created']
+        movie = Movie.query.get(new_movie_id)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(len(movies_after_create), len(movies)+1)
+        self.assertIsNotNone(movie)
+        
+        
+    def test_400_create_movie(self):
+        
+        movie = {
+            "release_date": "2022-01-02",
+        }
+        
+        res = self.client().post('/movies', headers=self.auth_producer, json=movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'],"The server could not understand the request due to invalid syntax.")
+        
+        
+    def test_403_create_movie(self):
+        
+        res = self.client().post('/movies', headers=self.auth_assistant, json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_create_movie(self):
+        
+        res = self.client().post('/movies', json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_edit_movie(self):
+        
+        res = self.client().patch('/movies/1', json=self.new_movie, headers=self.auth_producer)
+        data = json.loads(res.data)
+        
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['movie'])
+        
+        
+    def test_404_edit_movie(self):
+        
+        
+        res = self.client().patch('/movies/10000', headers=self.auth_producer, json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_403_edit_movie(self):
+        
+        res = self.client().patch('/movies/1', headers=self.auth_assistant, json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_edit_movie(self):
+        
+        res = self.client().patch('/movies/1', json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+                                                    
+                                                    
+    def test_delete_movie(self):
+        
+        movie = Movie(
+                title="new Title",
+                release_date=datetime.date.fromisoformat("2021-10-05"),
+                genre="new"
+                )
+        
+        movie.insert()
+        id = movie.id
+        movies = Movie.query.all()
+        res = self.client().delete('/movies/{}'.format(id), headers=self.auth_producer)
+        data = json.loads(res.data)
+        
+        movies_after_delete = Movie.query.all()
+        deleted_movie = Movie.query.get(id)
+        
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['deleted'])
+        self.assertEqual(len(movies),len(movies_after_delete)+1)
+        self.assertEqual(deleted_movie,None)
+        
+    def test_404_delete_movie(self):
+        
+        
+        res = self.client().delete('/movies/10000', headers=self.auth_producer)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_403_delete_movie(self):
+        
+        res = self.client().delete('/movies/1', headers=self.auth_assistant)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_delete_movie(self):
+        
+        res = self.client().delete('/movies/1',)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+                                                                                     
