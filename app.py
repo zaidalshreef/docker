@@ -203,7 +203,7 @@ def create_app(test_config=None):
             current_actors = pagination_movie_or_actor(request,actors)
             return jsonify({
                 "success": True,
-                "created": actor.name,
+                "created": actor.id,
                 "actors": current_actors,
                 "total_actors": total_actors,
             })

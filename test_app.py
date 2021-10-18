@@ -214,4 +214,166 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
         
-                                                                                     
+  ##-------------------------------------------------------##
+  
+                  ## Actors test ##
+  
+  ##-------------------------------------------------------##     
+       
+       
+    
+    def test_view_actors(self):
+        
+        res = self.client().get('/actors', headers=self.auth_assistant)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actors'])
+        
+    def test_401_unauthorized_access_to_view_actors(self):
+        res = self.client().get('/actors')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'],False)
+    
+    
+    def test_create_actors(self):
+        
+        actors = Actor.query.all()
+        
+        res = self.client().post('/actors', json=self.new_actor , headers=self.auth_director)
+        data = json.loads(res.data)
+        
+        actors_after_create = Actor.query.all()
+        new_actors_id = data['created']
+        actor = Actor.query.get(new_actors_id)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(len(actors_after_create), len(actors)+1)
+        self.assertIsNotNone(actor)
+        
+        
+    def test_400_create_actors(self):
+        
+        actor = {
+            "age": 30,
+        }
+        
+        res = self.client().post('/actors', headers=self.auth_director, json=actor)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'],"The server could not understand the request due to invalid syntax.")
+        
+        
+    def test_403_create_actors(self):
+        
+        res = self.client().post('/actors', headers=self.auth_assistant, json=self.new_movie)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_create_actors(self):
+        
+        res = self.client().post('/actors', json=self.new_actor)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_edit_actors(self):
+        
+        res = self.client().patch('/actors/1', json=self.new_actor, headers=self.auth_director)
+        data = json.loads(res.data)
+        
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actor'])
+        
+        
+    def test_404_edit_actors(self):
+        
+        
+        res = self.client().patch('/actors/10000', headers=self.auth_director, json=self.new_actor)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_403_edit_actors(self):
+        
+        res = self.client().patch('/actors/1', headers=self.auth_assistant, json=self.new_actor)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_edit_actors(self):
+        
+        res = self.client().patch('/actors/1', json=self.new_actor)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+                                                    
+                                                    
+    def test_delete_actors(self):
+        
+        actor = Actor(name="name",
+                          age="age",
+                          gender="gender" )
+        actor.insert()
+        id = actor.id
+        actors = Actor.query.all()
+        res = self.client().delete('/actors/{}'.format(id), headers=self.auth_director)
+        data = json.loads(res.data)
+        
+        actors_after_delete = Actor.query.all()
+        deleted_actor = Actor.query.get(id)
+        
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['deleted'])
+        self.assertEqual(len(actors),len(actors_after_delete)+1)
+        self.assertEqual(deleted_actor,None)
+        
+    def test_404_delete_actor(self):
+        
+        
+        res = self.client().delete('/actors/10000', headers=self.auth_director)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_403_delete_actor(self):
+        
+        res = self.client().delete('/actors/1', headers=self.auth_assistant)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['success'], False)
+        
+        
+    def test_401_delete_actor(self):
+        
+        res = self.client().delete('/actors/1',)
+        data = json.loads(res.data)
+      
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        
+                                                                                                             
