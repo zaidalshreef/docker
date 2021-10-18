@@ -377,3 +377,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         
                                                                                                              
+     
+     
+if __name__ == '__main__':
+    unittest.main()                                                                                                             
