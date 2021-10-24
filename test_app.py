@@ -71,7 +71,6 @@ class CastingAgencyTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'],False)
-        self.assertEqual(data['code'], 'authorization_header_missing')
     
     
     def test_create_movie(self):
@@ -82,7 +81,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         data = json.loads(res.data)
         
         movies_after_create = Movie.query.all()
-        new_movie_id = data['created']
+        new_movie_id = data["created"]
         movie = Movie.query.get(new_movie_id)
 
         self.assertEqual(res.status_code, 200)
@@ -125,7 +124,8 @@ class CastingAgencyTestCase(unittest.TestCase):
         
     def test_edit_movie(self):
         
-        res = self.client().patch('/movies/1', json=self.new_movie, headers=self.auth_producer)
+        movie = Movie.query.first()
+        res = self.client().patch('/movies/{}'.format(movie.id), json=self.new_movie, headers=self.auth_producer)
         data = json.loads(res.data)
         
 
@@ -247,7 +247,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         data = json.loads(res.data)
         
         actors_after_create = Actor.query.all()
-        new_actors_id = data['created']
+        new_actors_id = data["created"]
         actor = Actor.query.get(new_actors_id)
 
         self.assertEqual(res.status_code, 200)
@@ -290,7 +290,9 @@ class CastingAgencyTestCase(unittest.TestCase):
         
     def test_edit_actors(self):
         
-        res = self.client().patch('/actors/1', json=self.new_actor, headers=self.auth_director)
+        actor = Actor.query.first()
+        
+        res = self.client().patch('/actors/{}'.format(actor.id), json=self.new_actor, headers=self.auth_director)
         data = json.loads(res.data)
         
 
@@ -331,7 +333,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_delete_actors(self):
         
         actor = Actor(name="name",
-                          age="age",
+                          age=30,
                           gender="gender" )
         actor.insert()
         id = actor.id

@@ -1,10 +1,12 @@
 import os
 from models import setup_db, Actor, Movie, create_and_drop_all, setup_migrations
 import datetime
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify,session,redirect,render_template,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from auth import requires_auth, AuthError
+from authlib.integrations.flask_client import OAuth
+from urllib.parse import urlencode
 
 
 movies_or_actors_Per_Page = 10
@@ -23,7 +25,22 @@ def pagination_movie_or_actor(request, selection):
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
+    app.secret_key = "aWXqC0zXJTIUFT7MroX_GSNaBSYD9i7_lZCW0jLXoxLfUV1RBf2_qy3n1sU_a5wf"
+    oauth = OAuth(app)
+
+    auth0 = oauth.register(
+    'auth0',
+    client_id='FuDZfXiRt6E3MH150m2NUJUs28PX4gU6',
+    client_secret='aWXqC0zXJTIUFT7MroX_GSNaBSYD9i7_lZCW0jLXoxLfUV1RBf2_qy3n1sU_a5wf',
+    api_base_url='https://dev-w0m27pwl.us.auth0.com',
+    access_token_url='https://dev-w0m27pwl.us.auth0.com/oauth/token',
+    authorize_url='https://dev-w0m27pwl.us.auth0.com/authorize',
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+)
     setup_db(app)
+    setup_migrations(app)
     CORS(app)
 
     @app.after_request
@@ -33,6 +50,35 @@ def create_app(test_config=None):
         response.headers.add('Access-Control-Allow-Methods',
                              'GET,PUT,POST,PATCH,DELETE,OPTIONS')
         return response
+
+    @app.route('/callback')
+    def callback_handling():
+    # Handles response from token endpoint
+     token = auth0.authorize_access_token()
+     print(token)
+     resp = auth0.get('userinfo')
+     userinfo = resp.json()
+
+    # Store the user information in flask session.
+     session['jwt_payload'] = userinfo
+     session['profile'] = {
+        'user_id': userinfo['sub'],
+        'name': userinfo['name'],
+        'picture': userinfo['picture']
+    }
+     return redirect('/movies')
+
+
+    @app.route('/login')
+    def login():
+     return auth0.authorize_redirect(redirect_uri='http://127.0.0.1:5000/callback',audience="movies")
+
+    @app.route('/logout')
+    def logout():
+        session.clear()
+        params = {'returnTo': url_for('login', _external=True), 'client_id': "FuDZfXiRt6E3MH150m2NUJUs28PX4gU6"}
+        return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
+
 
 ##--------------------------------------------------------------------------------##
 
@@ -67,7 +113,7 @@ def create_app(test_config=None):
         data = request.get_json()
 
         # abort if the request body is invalid
-        if not ('title' in data and 'release_date' in data and 'genre' in data):
+        if ('title' not in data or 'release_date' not in data or 'genre' not in data):
             abort(400)
 
         try:
@@ -98,18 +144,21 @@ def create_app(test_config=None):
             
      #edit the movie by id 
     @app.route('/movies/<int:id>', methods=['PATCH'])
-    @requires_auth('Edit:movies')
+    @requires_auth('edit:movies')
     def edit_movies(payload, id):
       
-        try:
-            data = request.get_json()
-            if data is None:
+        data = request.get_json()
+           
+        if data is None:
                 abort(400)
                 
-            movie = Movie.query.get(id)
+        movie = Movie.query.get(id)
             
-            if movie is None:
+        if movie is None:
                 abort(404)
+      
+        try:
+           
                 
             if 'title' in data:
                 movie.title = data.get('title')
@@ -134,12 +183,15 @@ def create_app(test_config=None):
     @app.route('/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movies')
     def delete_movie(payload, id):
-        try:
-            movie = Movie.query.get(id)
+        
+        movie = Movie.query.get(id)
             
-            if movie is None:
+        if movie is None:
                 abort(404)
                 
+        
+        try:
+           
             movie.delete()
             
             return jsonify({
@@ -182,11 +234,14 @@ def create_app(test_config=None):
     @app.route('/actors', methods=['POST'])
     @requires_auth('add:actors')
     def create_actor(payload):
-        try:
-            data = request.get_json()
+        
+        
+        data = request.get_json()
             
-            if 'name' not in data or 'age' not in data or 'gender' not in data:
+        if ('name' not in data or 'age' not in data or 'gender' not in data):
                 abort(400)
+        try:
+            
                 
             actor = Actor(name=data.get("name"),
                           age=data.get("age"),
@@ -216,18 +271,21 @@ def create_app(test_config=None):
     @requires_auth('edit:actors')
     def edit_actor(payload, id):
         
-        try:
+        data = request.get_json()
             
-            data = request.get_json()
             
-            if data is None:
+        if data is None:
                 abort(400)
                 
-            actor = Actor.query.get(id)
+        actor = Actor.query.get(id)
             
-            if actor is None:
+        if actor is None:
                 abort(404)
                 
+        
+        try:
+            
+            
             if 'name' in data:
                 actor.name = data.get("name")
                 
@@ -251,14 +309,13 @@ def create_app(test_config=None):
     @requires_auth('delete:actors')
     def delete_actor(payload,id):
         
-        
+        actor = Actor.query.get(id)
+            
+        if actor is None:
+            abort(404)
+                
         try:
             
-            actor = Actor.query.get(id)
-            
-            if actor is None:
-                abort(404)
-                
             actor.delete()
             
             return jsonify({

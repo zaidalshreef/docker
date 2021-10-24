@@ -7,7 +7,7 @@ import json
 
 db = SQLAlchemy()
 
-DATABASE_URI = os.getenv('HEROKU_POSTGRESQL_CRIMSON_URL')
+DATABASE_URI = os.getenv('DATABASE_URI')
 
 def setup_db(app, database_path=DATABASE_URI):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
@@ -21,7 +21,7 @@ def setup_migrations(app):
 
 
 def create_and_drop_all():
-    # db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 
@@ -35,7 +35,7 @@ class Actor(db.Model):
     name = db.Column(db.String(), nullable=False)
     age = db.Column(db.Integer(), nullable=False)
     gender = db.Column(db.String(), nullable=False)
-    Movies = db.relationship("movie",secondary=MoviesAndActors,backref="actor", lazy="select")
+    Movies = db.relationship("Movie",secondary=MoviesAndActors,backref=db.backref('actor'), lazy="select")
 
 
     def insert(self):
@@ -67,7 +67,6 @@ class Movie(db.Model):
     title = db.Column(db.String(), nullable=False)
     release_date = db.Column(db.Date(), nullable=False)
     genre = db.Column(db.String(), nullable=False)
-    actors = db.relationship("actor",secondary=MoviesAndActors,backref="movie", lazy="select")
    
     def insert(self):
         db.session.add(self)
