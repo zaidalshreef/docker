@@ -40,6 +40,7 @@ def create_app(test_config=None):
     },
 )
     setup_db(app)
+    create_and_drop_all(app)
     setup_migrations(app)
     CORS(app)
 
