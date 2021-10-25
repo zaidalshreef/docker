@@ -47,11 +47,19 @@ https://fsnd-casting-agency-udacity.herokuapp.com/
 
 ###### To test live APIs the only way right now to do this is curl requests. Add Auth token headers from logins below to test.
 
-OATH login url. There are three logins atm, JWTs for these appear in the url after successfull login. Those tokens are needed to test the different APIs.
+### AUTH0
 
+The complete documentation for the authorization code flow can be found in [Auth0's Documentation](https://auth0.com/docs/api/authentication#authorize-application).
 
-https://dev-fc34y9lq.us.auth0.com/authorize?audience=CastingAgencyAPI&response_type=token&client_id=XeqwOu6PsAeC0bwm2dd6giNP0JJaaxIe&redirect_uri=http://localhost:8080/login-results
+It may help to fill in the url in the textbox below before copying it into the browser:
+```
+https://{{YOUR_DOMAIN}}/authorize?audience={{API_IDENTIFIER}}&response_type=token&client_id={{YOUR_CLIENT_ID}}&redirect_uri={{YOUR_CALLBACK_URI}}
+```
+For this project
+```
+https://dev-pv.eu.auth0.com/authorize?audience=casting-agency&response_type=token&client_id=F8RXCBpavu4G2Hdo3YtoLu0nQ0RDd7Mc&redirect_uri=https://pv-casting-agency.herokuapp.com/movies
 
+```
 
 casting Assistant token castingassistant@example.com Qwerty1234
 
