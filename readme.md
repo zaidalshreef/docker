@@ -1,4 +1,5 @@
-# Backend - Full Stack Trivia API 
+# Casting Agency API 
+ 
 
 ### Installing Dependencies for the Backend
 
