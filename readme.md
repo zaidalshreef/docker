@@ -79,7 +79,7 @@ To run the tests, run
 dropdb casting_test
 createdb casting_test
 psql casting_test < casting.pgsql
-python -m unittest test_app.py
+python test_app.py
 ```
 
 ## API Reference
