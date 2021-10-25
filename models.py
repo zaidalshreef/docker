@@ -9,7 +9,7 @@ db = SQLAlchemy()
 
 DATABASE_URI = os.getenv('HEROKU_POSTGRESQL_CRIMSON_URL')
 
-def setup_db(app, database_path=DATABASE_URI):
+def setup_db(app, database_path="postgres://inqedhttoldqhn:7ed8f2974ee7ef7dafc8473866504d85af09e55ab319d452c4628f2bb24fdd74@ec2-44-199-26-122.compute-1.amazonaws.com:5432/dcbjdbao912f41"):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
