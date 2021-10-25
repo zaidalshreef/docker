@@ -71,7 +71,7 @@ def create_app(test_config=None):
 
     @app.route('/login')
     def login():
-     return auth0.authorize_redirect(redirect_uri='http://127.0.0.1:5000/callback',audience="movies")
+     return auth0.authorize_redirect(redirect_uri='https://radiant-sands-87798.herokuapp.com/callback',audience="movies")
 
     @app.route('/logout')
     def logout():
