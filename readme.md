@@ -43,7 +43,8 @@ setup.sh has all the environment variables needed for the project. The app may f
 
 # Project deployed at
 
-https://fsnd-casting-agency-udacity.herokuapp.com/
+https://radiant-sands-87798.herokuapp.com/
+
 
 ###### To test live APIs the only way right now to do this is curl requests. Add Auth token headers from logins below to test.
 
@@ -57,7 +58,7 @@ https://{{YOUR_DOMAIN}}/authorize?audience={{API_IDENTIFIER}}&response_type=toke
 ```
 For this project
 ```
-https://dev-pv.eu.auth0.com/authorize?audience=casting-agency&response_type=token&client_id=F8RXCBpavu4G2Hdo3YtoLu0nQ0RDd7Mc&redirect_uri=https://pv-casting-agency.herokuapp.com/movies
+https://dev-w0m27pwl.us.auth0.com/authorize?audience=movies&response_type=token&client_id=FuDZfXiRt6E3MH150m2NUJUs28PX4gU6&redirect_uri=https://radiant-sands-87798.herokuapp.com/callback
 
 ```
 
