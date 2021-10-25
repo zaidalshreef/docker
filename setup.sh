@@ -10,4 +10,5 @@ export FLASK_APP=app
 export FLASK_ENV=development
 export TEST_DATABASE_URI="postgresql://postgres:12345@localhost:5433/casting_agency_test"
 export DATABASE_URI="postgresql://postgres:12345@localhost:5433/casting_agency"
-export NEW_VAR="Testing export"
+
+export HEROKU_POSTGRESQL_CRIMSON_URL="postgres://inqedhttoldqhn:7ed8f2974ee7ef7dafc8473866504d85af09e55ab319d452c4628f2bb24fdd74@ec2-44-199-26-122.compute-1.amazonaws.com:5432/dcbjdbao912f41"
