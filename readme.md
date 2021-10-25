@@ -21,271 +21,204 @@ This will install all of the required packages we selected within the `requireme
  - [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
 
  - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+  This will install all of the required packages we selected within the `requirements.txt` file.
 
-### Database Setup
-With Postgres running, restore a database using the trivia.psql file provided. From the backend folder in terminal run:
-```bash
-psql trivia < trivia.psql
+
+## Testing
+To run the tests, run 
+```
+dropdb casting_test
+createdb casting_test
+psql casting_test < casting.pgsql
+python -m unittest test_app.py
 ```
 
-### Running the server
+## API Reference
 
-From within the `./src` directory first ensure you are working using your created virtual environment.
+### Endpoints
 
-To run the server, execute:
-
-```bash
-flask run --reload
-```
-
-The `--reload` flag will detect file changes and restart the server automatically.
-
-## ToDo Tasks
-These are the files you'd want to edit in the backend:
-
-1. *./backend/flaskr/`__init__.py`*
-2. *./backend/test_flaskr.py*
-
-
-One note before you delve into your tasks: for each endpoint, you are expected to define the endpoint and response data. The frontend will be a plentiful resource because it is set up to expect certain endpoints and response data formats already. You should feel free to specify endpoints in your own way; if you do so, make sure to update the frontend or you will get some unexpected behavior. 
-
-1. Use Flask-CORS to enable cross-domain requests and set response headers. 
-
-
-2. Create an endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories. 
-
-
-3. Create an endpoint to handle GET requests for all available categories. 
-
-
-4. Create an endpoint to DELETE question using a question ID. 
-
-
-5. Create an endpoint to POST a new question, which will require the question and answer text, category, and difficulty score. 
-
-
-6. Create a POST endpoint to get questions based on category. 
-
-
-7. Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
-
-
-8. Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
-
-
-9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
-
-
-
-## Review Comment to the Students
-
-GET '/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs.
+#### GET '/movies'
+- General:
+    - Return all movies in the database
+    - Role Authorized: Assistant, Director, Producer
+- Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/movies```
 ```
 {
-  "categories": {
-    "1": "Science", 
-    "2": "Art", 
-    "3": "Geography", 
-    "4": "History", 
-    "5": "Entertainment", 
-    "6": "Sports"
-  }, 
-  "success": true
+    "movies": [
+        {
+            "id": 2,
+            "release_date": "Fri, 07 Feb 2020 00:00:00 GMT",
+            "title": "Birds of Prey"
+        },
+        {
+            "id": 3,
+            "release_date": "Sun, 10 Mar 2013 00:00:00 GMT",
+            "title": "The Great Gatsby"
+        },
+        {
+            "id": 4,
+            "release_date": "Fri, 20 May 2011 00:00:00 GMT",
+            "title": "Pirates of the Caribbean: On Stranger Tides"
+        },
+        {
+            "id": 6,
+            "release_date": "Wed, 24 Jul 2019 00:00:00 GMT",
+            "title": "once upon a time in hollywood"
+        }
+    ],
+    "success": true
 }
-
 ```
-
-
-GET `\questions?page=page number` 
-Fetches a paginated dictionary of questions of all available categories
-- *Request parameters (optional): page number
-- *Returns: a list of questions paginated 10 questions per page,list of categories,and total number of questions
-- *Example response:*  
- ```{
-  "categories": {
-    "1": "Science", 
-    "2": "Art", 
-    "3": "Geography", 
-    "4": "History", 
-    "5": "Entertainment", 
-    "6": "Sports"
-  }, 
-  "current_category": null, 
-  "questions": [
-    {
-      "answer": "Maya Angelou", 
-      "category": 4, 
-      "difficulty": 2, 
-      "id": 5, 
-      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-    }, 
-    {
-      "answer": "Muhammad Ali", 
-      "category": 4, 
-      "difficulty": 1, 
-      "id": 9, 
-      "question": "What boxer's original name is Cassius Clay?"
-    }, 
-    {
-      "answer": "Apollo 13", 
-      "category": 5, 
-      "difficulty": 4, 
-      "id": 2, 
-      "question": "What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"
-    }, 
-    {
-      "answer": "Tom Cruise", 
-      "category": 5, 
-      "difficulty": 4, 
-      "id": 4, 
-      "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
-    }, 
-    {
-      "answer": "Edward Scissorhands", 
-      "category": 5, 
-      "difficulty": 3, 
-      "id": 6, 
-      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
-    }, 
-    {
-      "answer": "Brazil", 
-      "category": 6, 
-      "difficulty": 3, 
-      "id": 10, 
-      "question": "Which is the only team to play in every soccer World Cup tournament?"
-    }, 
-    {
-      "answer": "Uruguay", 
-      "category": 6, 
-      "difficulty": 4, 
-      "id": 11, 
-      "question": "Which country won the first ever soccer World Cup in 1930?"
-    }, 
-    {
-      "answer": "George Washington Carver", 
-      "category": 4, 
-      "difficulty": 2, 
-      "id": 12, 
-      "question": "Who invented Peanut Butter?"
-    }, 
-    {
-      "answer": "Lake Victoria", 
-      "category": 3, 
-      "difficulty": 2, 
-      "id": 13, 
-      "question": "What is the largest lake in Africa?"
-    }, 
-    {
-      "answer": "The Palace of Versailles", 
-      "category": 3, 
-      "difficulty": 3, 
-      "id": 14, 
-      "question": "In which royal palace would you find the Hall of Mirrors?"
-    }
-  ], 
-  "success": true, 
-  "total_questions": 19
+#### GET '/actors'
+- General:
+    - Return all actors in the database
+    - Role Authorized: Assistant, Director, Producer
+- Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/actors```
+```
+{
+    "actors": [
+        {
+            "age": 30,
+            "gender": "F",
+            "id": 2,
+            "movie_id": 2,
+            "name": "Margot Robbie"
+        },
+        {
+            "age": 45,
+            "gender": "M",
+            "id": 3,
+            "movie_id": 3,
+            "name": "Leonardo DiCaprio"
+        },
+        {
+            "age": 35,
+            "gender": "F",
+            "id": 4,
+            "movie_id": 3,
+            "name": "Carey Mulligan"
+        },
+        {
+            "age": 57,
+            "gender": "M",
+            "id": 5,
+            "movie_id": 4,
+            "name": "Johnny Depp"
+        }
+    ],
+    "success": true
 }
 ```
 
-DELETE `/questions/question_id`
-Delete question by id from the database
-- *Request arguments: question_id 
-- *Returns : id of the deleted question 
-- *Example response:* 
+#### POST '/movies'
+- General:
+    - Add a new movie. The new movie must have all four information. 
+    - Role Authorized: Producer
+- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"title": "Call Me by Your Name", "release_date": "2017-10-20"}' http://127.0.0.1:5000/movies```
 ```
 {
-  "deleted": 20,
-  "success": true
-}
-```
-
-POST `/questions`
-create  new question and add it to the database 
-- *Request body:* JSON {'question': new question , 'answer': new answer, 'difficulty': choose difficulty, 'category': choose category }
-- *Returns : id of the created question
-- *Example response:* 
-```
-{
-  "created": 29, 
-  "success": true
-}
-```
-POST `/questions/search`
-search for all questions where a substring matches the search term (not case-sensitive)
-- *Request body:* JSON {'searchTerm': search string}
-- *Returns : questions that match a search term ,and total questions
-- *Example response:*
-```
-{
-  "currentCategory": null,
-  "questions": [
-    {
-      "answer": "Edward Scissorhands",
-      "category": 5,
-      "difficulty": 3,
-      "id": 6,
-      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
-    }
-  ],
-  "success": true,
-  "totalQuestions": 23
-}
-```
-
-GET `/categories/category_id/questions`
-Fetches a questions for a given category id
-- *Request argument:* category_id
-- *Returns : questions  in the given category id,Current Category,and total questions
-- *Example response:*
-```
-{
-  "current_category": "Geography",
-  "questions": [
-    {
-      "answer": "The Palace of Versailles",
-      "category": 3,
-      "difficulty": 3,
-      "id": 14,
-      "question": "In which royal palace would you find the Hall of Mirrors?"
+    "movie": {
+        "id": 16,
+        "release_date": "Fri, 20 Oct 2017 00:00:00 GMT",
+        "title": "Call Me by Your Name"
     },
-    {
-      "answer": "Agra",
-      "category": 3,
-      "difficulty": 2,
-      "id": 15,
-      "question": "The Taj Mahal is located in which Indian city?"
-    }
-  ],
-  "success": true,
-  "total_questions": 23
+    "success": true
 }
 ```
-POST `/quizzes`
-Fetches a random question in the choosing category. Previous questions will not asked again. 
-- *Request body:* JSON{"previous_questions": [], "quiz_category": {"id": , "type": }}
-- *Example response*: 
+
+#### POST '/actors'
+- General:
+    - Add a new actor. The new movie must have all four information. 
+    - Role Authorized: Director, Producer
+- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "Timothée Chalamet", "age": 24, "gender": "M", "movie_id": 6}' http://127.0.0.1:5000/actors```
+
 ```
 {
-  "question": {
-    "answer": "One",
-    "category": 2,
-    "difficulty": 4,
-    "id": 18,
-    "question": "How many paintings did Van Gogh sell in his lifetime?"
+    "actor": {
+        "age": 24,
+        "gender": "M",
+        "id": 11,
+        "movie_id": 6,
+        "name": "Timothée Chalamet"
+    },
+    "success": true
+}
+```
+
+#### PATCH '/movies/<int:id>'
+- General:
+    - Update some information of a movie based on a payload.
+    - Roles authorized : Director, Producer.
+- Example: ```curl http://127.0.0.1:5000/movies/3 -X PATCH -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{ "title": "", "release_date": "2020-11-01" }'```
+```
+{
+  "movie": {
+    "id": 3,
+    "release_date": "Sun, 01 NOV 2020 00:00:00 GMT",
+    "title": "The Great Gatsby"
   },
   "success": true
 }
 ```
 
-## Testing
-To run the tests, run
+#### PATCH '/actors/<int:id>'
+- General:
+    - Update some information of an actor based on a payload.
+    - Roles authorized : Director, Producer.
+- Example: ```curl -X PATCH - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "", "age": 88, "": "M", "movie_id": }' http://127.0.0.1:5000/actors/3```
 ```
-dropdb trivia_test
-createdb trivia_test
-psql trivia_test < trivia.psql
-python test_flaskr.py
+{
+  "actor": {"age": 88,
+    "gender": "M",
+    "id": 3,
+    "movie_id": 3,
+    "name": "Leonardo DiCaprio"
+  }, 
+  "success": true
+}
 ```
+
+#### DELETE '/movis/<int:id>'
+- General:
+    - Deletes a movie by id form the url parameter.
+    - Roles authorized : Executive Producer.
+- Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/movies/2```
+```
+{
+  "success": true, 
+  "delete": 2
+}
+```
+
+#### DELETE '/actors/<int:id>'
+- General:
+    - Deletes a movie by id form the url parameter.
+    - Roles authorized : Casting Director, Executive Producer.
+- Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/actors/2```
+```
+{
+    "success": "True",
+    "deleted": 2
+}
+```
+
+### Error Handling
+Errors are returned in the following json format:
+```
+{
+    'success': False,
+    'error': 404,
+    'message': 'Resource not found. Input out of range.'
+}
+```
+The API returns 6 types of errors:
+- 400: bad request
+- 404: not found
+- 403: forbidden
+- 422: unprocessable
+- 500: internal server error
+- AuthError: which mainly results in 401 (unauthorized)
+
+## Author and Acknowledgement
+- Linda Chen contributed everything in the project. 
+- The image of the homepage used in this project is contributed to Alex Litvin on Unsplash
