@@ -111,6 +111,9 @@ def create_app(test_config=None):
     def create_Movies(payload):
 
         data = request.get_json()
+        
+        if data is None:
+            abort(400)
 
         # abort if the request body is invalid
         if ('title' not in data or 'release_date' not in data or 'genre' not in data):
@@ -237,6 +240,9 @@ def create_app(test_config=None):
         
         
         data = request.get_json()
+        
+        if data is None: 
+            abort(400)
             
         if ('name' not in data or 'age' not in data or 'gender' not in data):
                 abort(400)
