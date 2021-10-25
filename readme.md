@@ -8,7 +8,7 @@
 2. **Virtual Enviornment** - We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
 
-3. **PIP Dependencies** - Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+3. **PIP Dependencies** - Once you have your virtual environment setup and running, install dependencies by running:
 ```bash
 pip install -r requirements.txt
 ```
@@ -24,6 +24,55 @@ This will install all of the required packages we selected within the `requireme
   This will install all of the required packages we selected within the `requirements.txt` file.
 
 
+
+## Running the server
+
+From within the directory first ensure you are working using your created virtual environment.
+
+To run the server, execute:
+
+```bash
+. ./setup.sh
+flask run
+```
+
+#### Flask run tests the token headers set for the enviroment. If they have expired, you need to login using the crededntials below and replace them in setup.sh and run setup.sh again
+
+setup.sh has all the environment variables needed for the project. The app may fail if they are not set properly. If that happens just copy paste lines from setup.sh on you CLI.
+
+# Project deployed at
+
+https://fsnd-casting-agency-udacity.herokuapp.com/
+
+###### To test live APIs the only way right now to do this is curl requests. Add Auth token headers from logins below to test.
+
+OATH login url. There are three logins atm, JWTs for these appear in the url after successfull login. Those tokens are needed to test the different APIs.
+
+
+https://dev-fc34y9lq.us.auth0.com/authorize?audience=CastingAgencyAPI&response_type=token&client_id=XeqwOu6PsAeC0bwm2dd6giNP0JJaaxIe&redirect_uri=http://localhost:8080/login-results
+
+
+casting Assistant token castingassistant@example.com Qwerty1234
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJWRXNSUnYwWUZRUDdtU3g5VGJ0TSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mYzM0eTlscS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWYyMjAzYzNjMTNiMTMwMjI4ZjgxM2FhIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeUFQSSIsImlhdCI6MTU5NjE0MTQ2NSwiZXhwIjoxNTk2MjI3ODY0LCJhenAiOiJYZXF3T3U2UHNBZUMwYndtMmRkNmdpTlAwSkphYXhJZSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.U39-EK_wkLbqrUnfsTWb7ih1Djn9L30GwdZwanfKVNyXIsa9BDcxd5yUxH8HD_owfAZWxcqqf2hCjJ_wcQDhuFD_Z8jDYvECtFx_KYWncmf2P4vhm_mNf6ENS2Hi2nNUV6YE7X4Mv3rsktI3GrZFppiMVKfNODRf3EbfAOw5VwqQCE8u3Paiurfyoya7frltSOeuf8pU6o3hVkJXwPSlnpN6Rvos_JL1JvodoZFJQJmtWn4CObJ-Nut-17aFjH1gm9ZsZzUfq-ECfcD74e7RKU28y_Rw_0BS6nFO9OVFVJGHuT3JyoCfxfuneNr5Ao6RYedGBqAw4R5l6TtQuxKQhw
+
+```
+
+Casting director token castingdirector@example.com Qwerty1234
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJWRXNSUnYwWUZRUDdtU3g5VGJ0TSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mYzM0eTlscS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWYyMjA2MjI1Yzg0OGYwMDM3YzQxNTJmIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeUFQSSIsImlhdCI6MTU5NjE0MTU2MCwiZXhwIjoxNTk2MjI3OTU5LCJhenAiOiJYZXF3T3U2UHNBZUMwYndtMmRkNmdpTlAwSkphYXhJZSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImRlbGV0ZTphY3RvcnMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.Zf0BsuoZdBFrkHjIEuPDW5Udt6aJn6qUMWIDpOaoTBxhALV2wRt1aV9qMn9PHihG8RZ_N8rEjpOm6AJGzT-MsDfKUTuF0Ah7CAME8hJ_AdWR0egsjoqb7bosn-cu6VSQNtb7O039dOgm0uX23G95nrbobbfeLg8S3ipSmsyO3IB1B78ebV2NCM8J64DXMCsQwvkJl4OKsNjc0nzxBk6fcjVVkUfftZJW45V6H-NU8Ljc15At1lxQ4SRbdQ3AEpH9lbptCKpKGY-QdAeEgD_gP3uffJbIGfjPEDWy-NMRTt-2ika134hnDvTXEspALVAKHchcp6pRw9pMr8LFmRvLPA
+
+```
+
+Executive Producer executiveproducer@example.com Qwerty1234
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJWRXNSUnYwWUZRUDdtU3g5VGJ0TSJ9.eyJpc3MiOiJodHRwczovL2Rldi1mYzM0eTlscS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWYyMjRkNGQ1Yzg0OGYwMDM3YzQxNzFkIiwiYXVkIjoiQ2FzdGluZ0FnZW5jeUFQSSIsImlhdCI6MTU5NjE0MTUwNCwiZXhwIjoxNTk2MjI3OTAzLCJhenAiOiJYZXF3T3U2UHNBZUMwYndtMmRkNmdpTlAwSkphYXhJZSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImFkZDptb3ZpZXMiLCJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.BgIe6xAaR5YqxM7j0NFjjLLctZnAKIp2x_q93sZPH8rBkCp3HjSDRLlqmz0KyeEwPyBMjLxQabbr3InJQk8OTq8S7rjoepgPs_zHF3mJrjUqZ3V3JaRX5_IvDf5J_-PfV-I6vxz42q1Mb1wMTBOHxOxj7MvtZ0JSycNGy3aRg1h0RsslV1Zyrcsx5cWk6xstpBylBEhaOTwbqHQTWZklWDE2eRnRAC3YYWrHpIy_xepcn8HNxfBoIFWr11SYxGMkYXEMqRDbQ8UqnUcUpOzxqMJXG913cf9YZegljhEiyZwPtsdlW92KNLNYKkLEPbTPXBwEQl_UmsD769fKc_egvA
+```
+
+
 ## Testing
 To run the tests, run 
 ```
@@ -36,6 +85,19 @@ python -m unittest test_app.py
 ## API Reference
 
 ### Endpoints
+
+GET '/actors'
+POST '/actors'
+PATCH '/actors/id'
+DELETE '/actors/id'
+GET '/movies'
+POST '/movies'
+PATCH '/movies/id'
+DELETE '/movies/id'
+
+
+
+
 
 #### GET '/movies'
 - General:
@@ -219,6 +281,3 @@ The API returns 6 types of errors:
 - 500: internal server error
 - AuthError: which mainly results in 401 (unauthorized)
 
-## Author and Acknowledgement
-- Linda Chen contributed everything in the project. 
-- The image of the homepage used in this project is contributed to Alex Litvin on Unsplash
