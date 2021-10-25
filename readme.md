@@ -83,6 +83,15 @@ psql casting_test < casting.pgsql
 python test_app.py
 ```
 
+To run tests using Heroku endpoints, run in postman
+
+```
+casting-agency.postman_collection.json
+```
+
+
+
+
 ## API Reference
 
 ### Endpoints
