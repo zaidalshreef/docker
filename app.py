@@ -90,7 +90,8 @@ def create_app(test_config=None):
     @app.route('/movies')
     @requires_auth('view:movies')
     def view_Movies(payload):
-
+        
+    
         movies = Movie.query.all()
         if movies is None:
             abort(404)
