@@ -194,7 +194,7 @@ DELETE '/movies/id'
 ```
 
 #### POST '/movies'
-create  new movie and add it to the database 
+- create  new movie and add it to the database :
     - *Request body:* JSON { 'title': 'new title', 'release_date': '2021-02-21','genre': "Action"}
     - *Returns : id of the created movie,and total number of movies
     - Role Authorized: Producer
@@ -211,7 +211,7 @@ create  new movie and add it to the database
 ```
 
 #### POST '/actors'
-create  new actor and add it to the database 
+- create  new actor and add it to the database:
     - *Request body:* JSON {"name": "new name", "age": 30, "gender": "male", }
     - *Returns : id of the created actor,and total number of actors
     - Role Authorized: Director, Producer
@@ -230,7 +230,7 @@ create  new actor and add it to the database
 ```
 
 #### PATCH '/movies/<int:id>'
-Update some information of a movie.
+- Update some information of a movie:
     - *Request body:* JSON of the information that want to update { (optional)'title': 'new title',(optional) 'release_date': '2021-02-21',(optional) 'genre': "Action"}
     - *Returns : the updated movie
     - Roles authorized : Director, Producer.
@@ -247,7 +247,7 @@ Update some information of a movie.
 ```
 
 #### PATCH '/actors/<int:id>'
- Update some information of an actor .
+- Update some information of an actor :
     - *Request body:* JSON of the information that want to update {(optional)"name": "new name", (optional)"age": 30,(optional) "gender": "male", }
     - *Returns : the created actor
     - Roles authorized : Director, Producer.
@@ -265,7 +265,7 @@ Update some information of a movie.
 ```
 
 #### DELETE '/movis/<int:id>'
-Delete movie by id from the database
+- Delete movie by id from the database:
     - *Request arguments: movie id  
     - *Returns : id of the deleted movie 
     - Roles authorized :  Producer.
@@ -278,7 +278,7 @@ Delete movie by id from the database
 ```
 
 #### DELETE '/actors/<int:id>'
-Delete actor by id from the database
+- Delete actor by id from the database:
     - *Request arguments: actor id  
     - *Returns : id of the deleted actor 
     - Roles authorized :  Director,  Producer.
