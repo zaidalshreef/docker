@@ -27,9 +27,9 @@ class CastingAgencyTestCase(unittest.TestCase):
         }
         
         self.new_actor = {
-            'name': 'zaid',
-            'age': 30,
-            'gender': 'male',
+            "name": "zaid",
+            "age": 30,
+            "gender": "male",
         }
         
         self.auth_assistant = {

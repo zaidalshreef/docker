@@ -139,11 +139,9 @@ def create_app(test_config=None):
             # total number of movies in the database after insert the new movie
             total_movies = len(movies)
             # paginate the movies
-            current_movies = pagination_movie_or_actor(request, movies)
             return jsonify({
                 "success": True,
                 "created": movie.id,
-                "movies": current_movies,
                 "total_movies": total_movies,
             })
 
@@ -268,11 +266,9 @@ def create_app(test_config=None):
             # total number of actors in the database after insert the new actor
             total_actors = len(actors)
             # paginate the actors
-            current_actors = pagination_movie_or_actor(request,actors)
             return jsonify({
                 "success": True,
                 "created": actor.id,
-                "actors": current_actors,
                 "total_actors": total_actors,
             })
         except :
