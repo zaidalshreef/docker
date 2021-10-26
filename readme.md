@@ -194,10 +194,11 @@ DELETE '/movies/id'
 ```
 
 #### POST '/movies'
-- General:
-    - Add a new movie. The new movie must have all four information. 
+create  new movie and add it to the database 
+    - *Request body:* JSON { 'title': 'new title', 'release_date': '2021-02-21','genre': "Action"}
+    - *Returns : id of the created movie,and total number of movies
     - Role Authorized: Producer
-- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"title": "Call Me by Your Name", "release_date": "2017-10-20"}' http://127.0.0.1:5000/movies```
+- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"title": "Call Me by Your Name", "release_date": "2017-10-20","genre": "Action"}' http://127.0.0.1:5000/movies```
 ```
 {
     "movie": {
@@ -210,10 +211,11 @@ DELETE '/movies/id'
 ```
 
 #### POST '/actors'
-- General:
-    - Add a new actor. The new movie must have all four information. 
+create  new actor and add it to the database 
+    - *Request body:* JSON {"name": "new name", "age": 30, "gender": "male", }
+    - *Returns : id of the created actor,and total number of actors
     - Role Authorized: Director, Producer
-- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "Timothée Chalamet", "age": 24, "gender": "M", "movie_id": 6}' http://127.0.0.1:5000/actors```
+- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "Timothée Chalamet", "age": 24, "gender": "M"}' http://127.0.0.1:5000/actors```
 
 ```
 {
@@ -221,7 +223,6 @@ DELETE '/movies/id'
         "age": 24,
         "gender": "M",
         "id": 11,
-        "movie_id": 6,
         "name": "Timothée Chalamet"
     },
     "success": true
@@ -229,8 +230,9 @@ DELETE '/movies/id'
 ```
 
 #### PATCH '/movies/<int:id>'
-- General:
-    - Update some information of a movie based on a payload.
+Update some information of a movie.
+    - *Request body:* JSON of the information that want to update { (optional)'title': 'new title',(optional) 'release_date': '2021-02-21',(optional) 'genre': "Action"}
+    - *Returns : the updated movie
     - Roles authorized : Director, Producer.
 - Example: ```curl http://127.0.0.1:5000/movies/3 -X PATCH -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{ "title": "", "release_date": "2020-11-01" }'```
 ```
@@ -245,10 +247,11 @@ DELETE '/movies/id'
 ```
 
 #### PATCH '/actors/<int:id>'
-- General:
-    - Update some information of an actor based on a payload.
+ Update some information of an actor .
+    - *Request body:* JSON of the information that want to update {(optional)"name": "new name", (optional)"age": 30,(optional) "gender": "male", }
+    - *Returns : the created actor
     - Roles authorized : Director, Producer.
-- Example: ```curl -X PATCH - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "", "age": 88, "": "M", "movie_id": }' http://127.0.0.1:5000/actors/3```
+- Example: ```curl -X PATCH - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "", "age": 88 }' http://127.0.0.1:5000/actors/3```
 ```
 {
   "actor": {"age": 88,
@@ -262,9 +265,10 @@ DELETE '/movies/id'
 ```
 
 #### DELETE '/movis/<int:id>'
-- General:
-    - Deletes a movie by id form the url parameter.
-    - Roles authorized : Executive Producer.
+Delete movie by id from the database
+    - *Request arguments: movie id  
+    - *Returns : id of the deleted movie 
+    - Roles authorized :  Producer.
 - Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/movies/2```
 ```
 {
@@ -274,9 +278,10 @@ DELETE '/movies/id'
 ```
 
 #### DELETE '/actors/<int:id>'
-- General:
-    - Deletes a movie by id form the url parameter.
-    - Roles authorized : Casting Director, Executive Producer.
+Delete actor by id from the database
+    - *Request arguments: actor id  
+    - *Returns : id of the deleted actor 
+    - Roles authorized :  Director,  Producer.
 - Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/actors/2```
 ```
 {
@@ -294,11 +299,9 @@ Errors are returned in the following json format:
     'message': 'Resource not found. Input out of range.'
 }
 ```
-The API returns 6 types of errors:
+The API returns 4 types of errors:
 - 400: bad request
 - 404: not found
-- 403: forbidden
 - 422: unprocessable
-- 500: internal server error
-- AuthError: which mainly results in 401 (unauthorized)
+- AuthError: which mainly results in (unauthorized)
 
