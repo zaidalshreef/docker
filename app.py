@@ -12,6 +12,12 @@ from urllib.parse import urlencode
 movies_or_actors_Per_Page = 10
 
 
+AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
+ALGORITHMS = os.getenv('ALGORITHMS')
+API_AUDIENCE =  os.getenv('API_AUDIENCE')
+SECRET_KEY =  os.getenv('SECRET')
+CLIENT_id = os.getenv('client_id')
+
 def pagination_movie_or_actor(request, selection):
     page = request.args.get('page', 1, type=int)
     start = (page - 1) * movies_or_actors_Per_Page
@@ -25,16 +31,16 @@ def pagination_movie_or_actor(request, selection):
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
-    app.secret_key = "aWXqC0zXJTIUFT7MroX_GSNaBSYD9i7_lZCW0jLXoxLfUV1RBf2_qy3n1sU_a5wf"
+    app.secret_key = SECRET_KEY
     oauth = OAuth(app)
 
     auth0 = oauth.register(
     'auth0',
-    client_id='FuDZfXiRt6E3MH150m2NUJUs28PX4gU6',
-    client_secret='aWXqC0zXJTIUFT7MroX_GSNaBSYD9i7_lZCW0jLXoxLfUV1RBf2_qy3n1sU_a5wf',
-    api_base_url='https://dev-w0m27pwl.us.auth0.com',
-    access_token_url='https://dev-w0m27pwl.us.auth0.com/oauth/token',
-    authorize_url='https://dev-w0m27pwl.us.auth0.com/authorize',
+    client_id=CLIENT_id,
+    client_secret=SECRET_KEY,
+    api_base_url=f'https://{AUTH0_DOMAIN}',
+    access_token_url=f'https://{AUTH0_DOMAIN}/oauth/token',
+    authorize_url=f'https://{AUTH0_DOMAIN}/authorize',
     client_kwargs={
         'scope': 'openid profile email',
     },
@@ -71,12 +77,12 @@ def create_app(test_config=None):
 
     @app.route('/login')
     def login():
-     return auth0.authorize_redirect(redirect_uri='https://radiant-sands-87798.herokuapp.com/callback',audience="movies")
+     return auth0.authorize_redirect(redirect_uri='https://radiant-sands-87798.herokuapp.com/callback',audience=API_AUDIENCE)
 
     @app.route('/logout')
     def logout():
         session.clear()
-        params = {'returnTo': url_for('login', _external=True), 'client_id': "FuDZfXiRt6E3MH150m2NUJUs28PX4gU6"}
+        params = {'returnTo': url_for('login', _external=True), 'client_id': CLIENT_id}
         return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
 
 
