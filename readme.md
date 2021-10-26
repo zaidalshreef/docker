@@ -188,15 +188,12 @@ DELETE '/movies/id'
     - *Request body:* JSON { 'title': 'new title', 'release_date': '2021-02-21','genre': "Action"}
     - *Returns : id of the created movie,and total number of movies
     - Role Authorized: Producer
-- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"title": "Call Me by Your Name", "release_date": "2017-10-20","genre": "Action"}' http://127.0.0.1:5000/movies```
+- Example: ```curl -X POST -H "Content-Type: application/json" -H  "Authorization: Bearer <Token> " -d '{"title": "Call Me by Your Name", "release_date": "2017-10-20","genre": "Action"}' http://127.0.0.1:5000/movies```
 ```
 {
-    "movie": {
-        "id": 16,
-        "release_date": "Fri, 20 Oct 2017 00:00:00 GMT",
-        "title": "Call Me by Your Name"
-    },
-    "success": true
+  "created": 2,
+  "success": true,
+  "total_movies": 2
 }
 ```
 
@@ -205,17 +202,13 @@ DELETE '/movies/id'
     - *Request body:* JSON {"name": "new name", "age": 30, "gender": "male", }
     - *Returns : id of the created actor,and total number of actors
     - Role Authorized: Director, Producer
-- Example: ```curl -X POST - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "Timothée Chalamet", "age": 24, "gender": "M"}' http://127.0.0.1:5000/actors```
+- Example: ```curl -X POST -H "Content-Type: application/json" -H  "Authorization: Bearer <Token> " -d '{"name": "zaid","age": 30,"gender": "male"}' http://127.0.0.1:5000/actors```
 
 ```
 {
-    "actor": {
-        "age": 24,
-        "gender": "M",
-        "id": 11,
-        "name": "Timothée Chalamet"
-    },
-    "success": true
+  "created": 2,
+  "success": true,
+  "total_actors": 2
 }
 ```
 
@@ -224,13 +217,14 @@ DELETE '/movies/id'
     - *Request body:* JSON of the information that want to update { (optional)'title': 'new title',(optional) 'release_date': '2021-02-21',(optional) 'genre': "Action"}
     - *Returns : the updated movie
     - Roles authorized : Director, Producer.
-- Example: ```curl http://127.0.0.1:5000/movies/3 -X PATCH -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{ "title": "", "release_date": "2020-11-01" }'```
+- Example: ```curl http://127.0.0.1:5000/movies/1 -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{ "title": "", "release_date": "2020-11-01" }''```
 ```
 {
   "movie": {
-    "id": 3,
-    "release_date": "Sun, 01 NOV 2020 00:00:00 GMT",
-    "title": "The Great Gatsby"
+    "genre": "Action",
+    "id": 1,
+    "release_date": "2020-11-01",
+    "title": ""
   },
   "success": true
 }
@@ -241,15 +235,15 @@ DELETE '/movies/id'
     - *Request body:* JSON of the information that want to update {(optional)"name": "new name", (optional)"age": 30,(optional) "gender": "male", }
     - *Returns : the created actor
     - Roles authorized : Director, Producer.
-- Example: ```curl -X PATCH - H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -d '{"name": "", "age": 88 }' http://127.0.0.1:5000/actors/3```
+- Example: ```curl http://127.0.0.1:5000/actors/1 -X PATCH -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"name": "", "age": 88 }'```
 ```
 {
-  "actor": {"age": 88,
-    "gender": "M",
-    "id": 3,
-    "movie_id": 3,
-    "name": "Leonardo DiCaprio"
-  }, 
+  "actor": {
+    "age": 88,
+    "gender": "male",
+    "id": 1,
+    "name": ""
+  },
   "success": true
 }
 ```
@@ -259,11 +253,11 @@ DELETE '/movies/id'
     - *Request arguments: movie id  
     - *Returns : id of the deleted movie 
     - Roles authorized :  Producer.
-- Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/movies/2```
+- Example: ```curl -H "Authorization: Bearer <TOKEN>" -X DELETE http://127.0.0.1:5000/movies/2```
 ```
 {
-  "success": true, 
-  "delete": 2
+  "deleted": 2,
+  "success": true
 }
 ```
 
@@ -272,11 +266,11 @@ DELETE '/movies/id'
     - *Request arguments: actor id  
     - *Returns : id of the deleted actor 
     - Roles authorized :  Director,  Producer.
-- Example: ```curl -H '{"Content-Type: application/json", "Authorization: Bearer <TOKEN>}' -X DELETE http://127.0.0.1:5000/actors/2```
+- Example: ```curl -H "Authorization: Bearer <TOKEN>" -X DELETE http://127.0.0.1:5000/actors/1```
 ```
 {
-    "success": "True",
-    "deleted": 2
+  "deleted": 1,
+  "success": true
 }
 ```
 
