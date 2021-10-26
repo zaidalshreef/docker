@@ -126,29 +126,34 @@ DELETE '/movies/id'
 - Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/movies```
 ```
 {
-    "movies": [
-        {
-            "id": 2,
-            "release_date": "Fri, 07 Feb 2020 00:00:00 GMT",
-            "title": "Birds of Prey"
-        },
-        {
-            "id": 3,
-            "release_date": "Sun, 10 Mar 2013 00:00:00 GMT",
-            "title": "The Great Gatsby"
-        },
-        {
-            "id": 4,
-            "release_date": "Fri, 20 May 2011 00:00:00 GMT",
-            "title": "Pirates of the Caribbean: On Stranger Tides"
-        },
-        {
-            "id": 6,
-            "release_date": "Wed, 24 Jul 2019 00:00:00 GMT",
-            "title": "once upon a time in hollywood"
-        }
-    ],
-    "success": true
+  "movies": [
+    {
+      "genre": "Animation/Family",
+      "id": 4,
+      "release_date": "2021-09-21",
+      "title": "Ron's Gone Wrong"
+    },
+    {
+      "genre": "Action/Sci-fi",
+      "id": 1,
+      "release_date": "2021-10-05",
+      "title": "Venom: Let There Be Carnage"
+    },
+    {
+      "genre": "Action/Adventure",
+      "id": 2,
+      "release_date": "2021-10-05",
+      "title": "No Time To Die"
+    },
+    {
+      "genre": "Horror/Thriller",
+      "id": 3,
+      "release_date": "2021-09-21",
+      "title": "Halloween Kills"
+    }
+  ],
+  "success": true,
+  "total_movies": 4
 }
 ```
 #### GET '/actors?page=page number'
@@ -159,37 +164,22 @@ DELETE '/movies/id'
 - Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/actors```
 ```
 {
-    "actors": [
-        {
-            "age": 30,
-            "gender": "F",
-            "id": 2,
-            "movie_id": 2,
-            "name": "Margot Robbie"
-        },
-        {
-            "age": 45,
-            "gender": "M",
-            "id": 3,
-            "movie_id": 3,
-            "name": "Leonardo DiCaprio"
-        },
-        {
-            "age": 35,
-            "gender": "F",
-            "id": 4,
-            "movie_id": 3,
-            "name": "Carey Mulligan"
-        },
-        {
-            "age": 57,
-            "gender": "M",
-            "id": 5,
-            "movie_id": 4,
-            "name": "Johnny Depp"
-        }
-    ],
-    "success": true
+  "actors": [
+    {
+      "age": 30,
+      "gender": "M",
+      "id": 1,
+      "name": "zaid"
+    },
+    {
+      "age": 30,
+      "gender": "M",
+      "id": 2,
+      "name": "ahmad"
+    }
+  ],
+  "success": true,
+  "total_actors": 2
 }
 ```
 
