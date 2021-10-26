@@ -118,9 +118,10 @@ DELETE '/movies/id'
 
 
 
-#### GET '/movies'
-- General:
-    - Return all movies in the database
+#### GET '/movies?page=page number'
+- Fetches a paginated dictionary of movies :
+    - *Request parameters (optional): page number
+    - *Returns: a list of movies paginated 10 movies per page,and total number of movies
     - Role Authorized: Assistant, Director, Producer
 - Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/movies```
 ```
@@ -150,9 +151,10 @@ DELETE '/movies/id'
     "success": true
 }
 ```
-#### GET '/actors'
-- General:
-    - Return all actors in the database
+#### GET '/actors?page=page number'
+- Fetches a paginated dictionary of actor :
+    - *Request parameters (optional): page number
+    - *Returns: a list of actors paginated 10 actors per page,and total number of actors
     - Role Authorized: Assistant, Director, Producer
 - Example: ```curl -H "Authorization: Bearer <Token>" http://127.0.0.1:5000/actors```
 ```
