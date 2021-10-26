@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "62d5a7af-423b-4daf-984b-df5e8a87e976",
+		"_postman_id": "9042031c-f10c-43ae-84d6-735a7fe02ddf",
 		"name": "casting-agency",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -24,46 +24,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET movie by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM4Y2E2ODRhMDEwYzIyODg0OGVmIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzE2OTQsImV4cCI6MTU4NzMxODA5NCwiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.q3Zdozz-vAqt0ZfgA7_y35IrXv2sbIXAjPGCA9Hct1hJWyFf13lmPByA1BxZqLYyevbhHhVL69jbDtZkaWEyW_IvE3aW2RtQRgz7KZS10owugMs0B-O2cYki5zEhwTgxnOHrhHEHpDnKkDvnfUKhnP8ZnileAxW4qt4UbNAT7eLXAJiEqf1TsPO2rn1KnuuSvMjkEFbVz_G1s32sU1q87bmT6tnLSoZSJAevTgAxyeMjeNxHRuI-u1pT9VFj8vGWa1ssvqY33pNoRWgbv3jth9WosC6Kk8Y8hxo67E0Cz6P03nq7iJiUl8nxSX2r8tBaqiRvZHh0G_U7TRRXZMN81w",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"movies",
-								"1"
 							]
 						}
 					},
@@ -85,46 +54,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"actors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET actor by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM4Y2E2ODRhMDEwYzIyODg0OGVmIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzE2OTQsImV4cCI6MTU4NzMxODA5NCwiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.q3Zdozz-vAqt0ZfgA7_y35IrXv2sbIXAjPGCA9Hct1hJWyFf13lmPByA1BxZqLYyevbhHhVL69jbDtZkaWEyW_IvE3aW2RtQRgz7KZS10owugMs0B-O2cYki5zEhwTgxnOHrhHEHpDnKkDvnfUKhnP8ZnileAxW4qt4UbNAT7eLXAJiEqf1TsPO2rn1KnuuSvMjkEFbVz_G1s32sU1q87bmT6tnLSoZSJAevTgAxyeMjeNxHRuI-u1pT9VFj8vGWa1ssvqY33pNoRWgbv3jth9WosC6Kk8Y8hxo67E0Cz6P03nq7iJiUl8nxSX2r8tBaqiRvZHh0G_U7TRRXZMN81w",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"actors",
-								"1"
 							]
 						}
 					},
@@ -155,10 +93,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -201,10 +139,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -240,16 +178,16 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/11",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/1",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies",
-								"11"
+								"1"
 							]
 						}
 					},
@@ -270,16 +208,16 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/9",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/1",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"actors",
-								"9"
+								"1"
 							]
 						}
 					},
@@ -301,16 +239,16 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/11",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/1",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies",
-								"11"
+								"1"
 							]
 						}
 					},
@@ -332,10 +270,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/5",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/5",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -354,7 +292,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM4Y2E2ODRhMDEwYzIyODg0OGVmIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzE2OTQsImV4cCI6MTU4NzMxODA5NCwiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.q3Zdozz-vAqt0ZfgA7_y35IrXv2sbIXAjPGCA9Hct1hJWyFf13lmPByA1BxZqLYyevbhHhVL69jbDtZkaWEyW_IvE3aW2RtQRgz7KZS10owugMs0B-O2cYki5zEhwTgxnOHrhHEHpDnKkDvnfUKhnP8ZnileAxW4qt4UbNAT7eLXAJiEqf1TsPO2rn1KnuuSvMjkEFbVz_G1s32sU1q87bmT6tnLSoZSJAevTgAxyeMjeNxHRuI-u1pT9VFj8vGWa1ssvqY33pNoRWgbv3jth9WosC6Kk8Y8hxo67E0Cz6P03nq7iJiUl8nxSX2r8tBaqiRvZHh0G_U7TRRXZMN81w",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJoZDZRcHVGTTh1RjZTcWg3WmNHbiJ9.eyJpc3MiOiJodHRwczovL2Rldi13MG0yN3B3bC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE3NWJlMDI3MmVmYTgwMDY5ZDI2YTAxIiwiYXVkIjpbIm1vdmllcyIsImh0dHBzOi8vZGV2LXcwbTI3cHdsLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzUyNzk0NzIsImV4cCI6MTYzNTM2NTg3MiwiYXpwIjoiRnVEWmZYaVJ0NkUzTUgxNTBtMk5VSlVzMjhQWDRnVTYiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImFkZDptb3ZpZXMiLCJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImVkaXQ6YWN0b3JzIiwiZWRpdDptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.K-3pZUeegq_T173OB8PWL2xkGQ_JQrFwvRJ1FYfdl5zqpe85_rAeY3uyALcq0D4zC58zO-OtwwZnntsEM1URySVnWSTKNvRIPImPCKLRLMT1yk0k9AQQsy2GDD2_NukG03KmuSbow71aWvb9-CWbn7lUH2-EXOx4tB3irzGv9YeUb33__PFXJ4-QKboNQyUAANV1GeOEwPUIIGvTZn-V1KZ69WEoyvHiIunx1tbPtMJtLoe9yojFDW8iUATN36_JQeYhYwOqHU4YFsc-LoYgePn4SXov8GKbprXk-9TKaSXFHw_-jY-UmPTjkE4iKu2MBOV1cI4sozc_gJCbpSSRjg\n",
 						"type": "string"
 					}
 				]
@@ -363,7 +301,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b18615ae-7cd3-4276-9f10-00ae0e63c564",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -373,15 +310,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4a45188-bef7-4ebc-9e3e-f3d400b0315b",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "casting-director",
@@ -402,46 +337,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET movie by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM4OTM2ODRhMDEwYzIyODg0OGI4IiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzE0OTgsImV4cCI6MTU4NzMxNzg5OCwiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.O1FO0OppV3W1f0Rgidn_2J25fhwZ-ZZIAi8pJVL-Os7TRuitfx8RKd6sOBeSfMytC1xfKJWHElu442QJoG40pj3doUZKsmCdl5T5qvIejka8C9IZxn1KE0gpYrqKhbJCy9StkN0Bl7q4hgupQhpWl_GkafO4EkIMPN7Anka2ZdmhiaEhKNsiqW8ODe4CUyUVjZgkuPY7uV0OpI_UPI9lO6xce7RHvGMJJ1_9KH4yp_pnkCCQRy9gmGplqa_iNLH-2jjlAtV2onbEHnctFLxrPF7yL7jtpZ-QmmzpDnttbjfgn5qns3s55nhQisdG4Kd-skNJN1h8HbpQEOBXqP0Piw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"movies",
-								"1"
 							]
 						}
 					},
@@ -463,46 +367,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"actors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET actor by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM4OTM2ODRhMDEwYzIyODg0OGI4IiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzE0OTgsImV4cCI6MTU4NzMxNzg5OCwiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.O1FO0OppV3W1f0Rgidn_2J25fhwZ-ZZIAi8pJVL-Os7TRuitfx8RKd6sOBeSfMytC1xfKJWHElu442QJoG40pj3doUZKsmCdl5T5qvIejka8C9IZxn1KE0gpYrqKhbJCy9StkN0Bl7q4hgupQhpWl_GkafO4EkIMPN7Anka2ZdmhiaEhKNsiqW8ODe4CUyUVjZgkuPY7uV0OpI_UPI9lO6xce7RHvGMJJ1_9KH4yp_pnkCCQRy9gmGplqa_iNLH-2jjlAtV2onbEHnctFLxrPF7yL7jtpZ-QmmzpDnttbjfgn5qns3s55nhQisdG4Kd-skNJN1h8HbpQEOBXqP0Piw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"actors",
-								"1"
 							]
 						}
 					},
@@ -533,10 +406,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -579,10 +452,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -618,16 +491,16 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/10",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/2",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies",
-								"10"
+								"2"
 							]
 						}
 					},
@@ -658,10 +531,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/2",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/2",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -679,16 +552,16 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/11",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/4",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies",
-								"11"
+								"4"
 							]
 						}
 					},
@@ -710,10 +583,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/7",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/7",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -727,7 +600,36 @@
 				}
 			],
 			"description": "This is for requests without authorization",
-			"protocolProfileBehavior": {}
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJoZDZRcHVGTTh1RjZTcWg3WmNHbiJ9.eyJpc3MiOiJodHRwczovL2Rldi13MG0yN3B3bC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE3NWJlYmY3MmVmYTgwMDY5ZDI2YTJmIiwiYXVkIjpbIm1vdmllcyIsImh0dHBzOi8vZGV2LXcwbTI3cHdsLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzUyODAwODksImV4cCI6MTYzNTM2NjQ4OSwiYXpwIjoiRnVEWmZYaVJ0NkUzTUgxNTBtMk5VSlVzMjhQWDRnVTYiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImRlbGV0ZTphY3RvcnMiLCJlZGl0OmFjdG9ycyIsImVkaXQ6bW92aWVzIiwidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.XD8TMfUvISSpQQgmw0ZUlSXJKRXu-XpZSXfA5J0vgZFkE-3qjeUpFR4-qwn8gdYqwkQacC2nZ22sfb0u88sdy2XmALFRWIzvOHOWhVjlKDMffr9VDQZQSlo1R-FLolVwkKLWCnsINB7KkpvWptv0-e2wEQd-c8HmM5B84__f0Z6s2zu666mQV_WT5aPk5KcRxEJEmAn9GYrCYBPqXfHYAoLlnPgAvfshtcm_qiFkG4nIk5WjVujUNnfd0TlUeEb1QHe7ijF5UX9V1OWcPWpmBnLj66dwNU3sscuqd2-Wr1vU7F9wK9bYVN1KZlIPdwBXcEWyIJKEd5JJuoX4R-Cx7Q\n\n",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "casting-assistant",
@@ -748,46 +650,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"movies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET movie by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM3ZGY2N2U4NzQwYzFlZGNkMDcwIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzExNjcsImV4cCI6MTU4NzMxNzU2NywiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.J7Peh_ZPiS5PLtfDbiXBxx1bjUJFrY0UPJkogHX8t911Vou8x9GaVXWKARdM6HMk11wxQ7YIpQH8mMBhzfHlyqiIrnIGzd9ExUB61-QsiZkGMR-uWdxxO5jDTMXoms6ERcCafsA9EeTZ-avq1xGclBRLVZTYacOv-50HArxCB-pj1FeydmKEHW3tYxtJBYD5tc3e9ZzgwqciaLWrD-JOn_gDuLUfiYwoOe4NaZ5TD6Q7ApMhNAZegae0WVDn5KVHtjZ26GfF_2SvYZoRjfJdU6ysurqweqzTYu7jYBW_SFH_VUEnyHPclUUi_DTYDsKys2lPF7BIgKyoIFPQmIgH2g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"movies",
-								"1"
 							]
 						}
 					},
@@ -809,46 +680,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"actors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET actor by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM3ZGY2N2U4NzQwYzFlZGNkMDcwIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzExNjcsImV4cCI6MTU4NzMxNzU2NywiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.J7Peh_ZPiS5PLtfDbiXBxx1bjUJFrY0UPJkogHX8t911Vou8x9GaVXWKARdM6HMk11wxQ7YIpQH8mMBhzfHlyqiIrnIGzd9ExUB61-QsiZkGMR-uWdxxO5jDTMXoms6ERcCafsA9EeTZ-avq1xGclBRLVZTYacOv-50HArxCB-pj1FeydmKEHW3tYxtJBYD5tc3e9ZzgwqciaLWrD-JOn_gDuLUfiYwoOe4NaZ5TD6Q7ApMhNAZegae0WVDn5KVHtjZ26GfF_2SvYZoRjfJdU6ysurqweqzTYu7jYBW_SFH_VUEnyHPclUUi_DTYDsKys2lPF7BIgKyoIFPQmIgH2g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/1",
-							"protocol": "https",
-							"host": [
-								"pv-casting-agency",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"actors",
-								"1"
 							]
 						}
 					},
@@ -879,10 +719,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -925,10 +765,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -964,10 +804,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/4",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/4",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -1004,10 +844,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/2",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/2",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -1035,10 +875,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/movies/5",
+							"raw": "https://radiant-sands-87798.herokuapp.com/movies/5",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -1066,10 +906,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://pv-casting-agency.herokuapp.com/actors/3",
+							"raw": "https://radiant-sands-87798.herokuapp.com/actors/3",
 							"protocol": "https",
 							"host": [
-								"pv-casting-agency",
+								"radiant-sands-87798",
 								"herokuapp",
 								"com"
 							],
@@ -1088,7 +928,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inp4NEZBWkpMQWpsUFdrOXRyUm4weCJ9.eyJpc3MiOiJodHRwczovL2Rldi1wdi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU5YjM3ZGY2N2U4NzQwYzFlZGNkMDcwIiwiYXVkIjoiY2FzdGluZy1hZ2VuY3kiLCJpYXQiOjE1ODcyMzExNjcsImV4cCI6MTU4NzMxNzU2NywiYXpwIjoiRjhSWENCcGF2dTRHMkhkbzNZdG9MdTBuUTBSRGQ3TWMiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbInZpZXc6YWN0b3JzIiwidmlldzptb3ZpZXMiXX0.J7Peh_ZPiS5PLtfDbiXBxx1bjUJFrY0UPJkogHX8t911Vou8x9GaVXWKARdM6HMk11wxQ7YIpQH8mMBhzfHlyqiIrnIGzd9ExUB61-QsiZkGMR-uWdxxO5jDTMXoms6ERcCafsA9EeTZ-avq1xGclBRLVZTYacOv-50HArxCB-pj1FeydmKEHW3tYxtJBYD5tc3e9ZzgwqciaLWrD-JOn_gDuLUfiYwoOe4NaZ5TD6Q7ApMhNAZegae0WVDn5KVHtjZ26GfF_2SvYZoRjfJdU6ysurqweqzTYu7jYBW_SFH_VUEnyHPclUUi_DTYDsKys2lPF7BIgKyoIFPQmIgH2g",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJoZDZRcHVGTTh1RjZTcWg3WmNHbiJ9.eyJpc3MiOiJodHRwczovL2Rldi13MG0yN3B3bC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE3NWJkYjkwMmIzZGQwMDcxY2Q5YzM4IiwiYXVkIjpbIm1vdmllcyIsImh0dHBzOi8vZGV2LXcwbTI3cHdsLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MzUyNzk5OTIsImV4cCI6MTYzNTM2NjM5MiwiYXpwIjoiRnVEWmZYaVJ0NkUzTUgxNTBtMk5VSlVzMjhQWDRnVTYiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.BWgj3uKWaIzgSTSwzrpKTKWqx8usvEIz-2gPZQufVbl3nW_cHYzCvXAsOGQVjVCBwIoGqUF7akLYGLdz5pnSYzmg0YENsETDm0I-TwjMdl8NKGCOloP0gCcqtRf4iZmxGMW8g-a7Sc3ZmpI88EB3iXtKSgIOU2MBBUYXfCrTE-JuikcT20SBKbOckQv_ro7DBO5RlNRcB7G7visXx_lY9-Uz0nqMyEt88Bm76xfFN4WSsd_seKXqoSJNLtqf4kJOxPr4SuXHm8oLHoSmihFtgDaksPa1KJB7OGVScJ4F_-O8akUffLI7jleg348UyFX9iPQngwurBYrvG64lgQUlfw\n\n",
 						"type": "string"
 					}
 				]
@@ -1097,7 +937,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "61f708e7-ffef-43b6-90f1-38aaae0445c4",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1107,16 +946,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2660da5b-7d51-4cf2-93ff-648bcb8c2b0b",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
