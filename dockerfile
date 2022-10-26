@@ -4,7 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
-
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["gunicorn", "-b", ":8080", "main:app"]
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:8080"]
